@@ -1,12 +1,36 @@
 import React from 'react';
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
-import { useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
+import { sendAuthMailRequest } from '../../apis/api/sendAuthMail';
+import FullSizeLoader from '../../components/FullSizeLoader/FullSizeLoader';
+import { IoMdCheckboxOutline } from "react-icons/io";
 
 function MyPage() {
     const queryClient = useQueryClient();
     const principalData = queryClient.getQueryData("principalQuery")
+    const sendAuthMailMutation = useMutation({
+        mutationKey: "sendAuthMailMutation",
+        mutationFn: sendAuthMailRequest,
+        retry: 0,
+        onSuccess: (response) =>{
+            if(response.data){
+                alert("메일 전송을 완료하였습니다.");
+            }else{
+                alert("메일 전송에 실패하였습니다.");
+            }
+        }
+    }); 
+    const handleSendAuthMailClick = () =>{
+        sendAuthMailMutation.mutate();
+    }
+    
     return (
+        <>{
+            sendAuthMailMutation.isLoading
+            ? 
+            <FullSizeLoader/> :
+
         <div css={s.layout}>
             <div css={s.header}>
                 <div css={s.imgBox}>
@@ -23,14 +47,14 @@ function MyPage() {
                         {
                             principalData.data.authorities
                             .filter(auth => auth.authority === "ROLE_USER").length === 0 ?
-                            <button css={s.infoButton}>인증하기</button>
+                            <button css={s.infoButton} onClick={handleSendAuthMailClick}>인증하기</button>
                             :
-                            <>체크</>
+                            <div css={s.emailCheck}><IoMdCheckboxOutline /></div>
                         }
                     </div>
-                    <div>
-                        <button>정보 수정</button>
-                        <button>비밀번호 수정</button>
+                    <div css={s.infoButtons}>
+                        <button css={s.infoButton}>정보 수정</button>
+                        <button css={s.infoButton}>비밀번호 수정</button>
                     </div>
                 </div>
             </div>
@@ -38,6 +62,8 @@ function MyPage() {
 
             </div>
         </div>
+        }
+        </>
     );
 }
 
