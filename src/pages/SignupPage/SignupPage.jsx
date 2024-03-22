@@ -99,7 +99,7 @@ function SignupPage() {
             <AuthPageInput type={"password"} name={"checkPassword"} placeholder={"비밀번호 확인"} value={checkPassword} onChange={checkPasswordChange} message={checkPasswordMessage} />
             <AuthPageInput type={"text"} name={"name"} placeholder={"성명"} value={name} onChange={nameChange} message={nameMessage} />
             <AuthPageInput type={"text"} name={"email"} placeholder={"이메일"} value={email} onChange={emailChange} message={emailMessage} />
-            <Link to={"/auth/signin"}>로그인</Link>
+            <Link css={s.loginLink} to={"/auth/signin"}>로그인</Link>
         </>
     );
 }
