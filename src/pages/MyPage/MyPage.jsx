@@ -12,7 +12,8 @@ function MyPage() {
     const navigate = useNavigate();
     useAuthCheck();
     const queryClient = useQueryClient();
-    const principalData = queryClient.getQueryData("principalQuery")
+    const principalData = queryClient.getQueryData("principalQuery");
+
     const sendAuthMailMutation = useMutation({
         mutationKey: "sendAuthMailMutation",
         mutationFn: sendAuthMailRequest,
@@ -28,6 +29,7 @@ function MyPage() {
     const handleSendAuthMailClick = () =>{
         sendAuthMailMutation.mutate();
     }
+    console.log(principalData);
     
     return (
         <>{

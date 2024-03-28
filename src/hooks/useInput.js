@@ -15,6 +15,7 @@ export const useInput = (property) => {
         for(let [ k, v ] of regexEntries) {
             if(property === k) {
                 if(v.regexr.test(value)) {
+                    console.log(v);
                     setMessage(() => {
                         return {
                             type: "success",

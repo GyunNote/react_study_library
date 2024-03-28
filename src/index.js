@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import StateStudy from './pages/Study/StateStudy/StateStudy';
 
 const queryClient = new QueryClient();
  const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,7 +16,7 @@ const queryClient = new QueryClient();
 
     <RecoilRoot>
       <BrowserRouter>
-        <App />
+        <StateStudy/>
       </BrowserRouter>
     </RecoilRoot>
   </QueryClientProvider>

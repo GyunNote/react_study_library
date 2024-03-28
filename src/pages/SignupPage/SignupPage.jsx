@@ -62,12 +62,13 @@ function SignupPage() {
             name,
             email
         }).then(response => {
-            console.log(response);
+           
             if(response.status === 201){
                 navigate("/auth/signin");
             }
         }).catch(error => {
             if(error.response.status === 400){
+
                 const errorMap = error.response.data;
                 const errorEntries = Object.entries(errorMap);
                 for(let [k,v] of errorEntries){

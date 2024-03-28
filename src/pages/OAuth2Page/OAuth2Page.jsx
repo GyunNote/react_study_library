@@ -8,7 +8,7 @@ function OAuth2Page() {
     const [searchParams] = useSearchParams();
     const name = searchParams.get("name");
     const provider = searchParams.get("provider");
-    
+    console.log(searchParams);
     return (
         <div>
             <h1>계정 통합</h1>

@@ -23,6 +23,7 @@ function RootSideMenuLeft(props) {
     const handleCloseClick = () =>{
         setShow(() => false);
     }
+    console.log(principalQueryState);
    
     return (
         <div css={s.layout(show)} onClick={(e) => e.stopPropagation()}>
@@ -50,6 +51,7 @@ function RootSideMenuLeft(props) {
                     <div css={s.usernameAndEmail}> 
                         <span >{principalQueryState.data.data.username}</span>
                         <span>{principalQueryState.data.data.email}</span>
+                       
                     </div>
                     </div>
 
